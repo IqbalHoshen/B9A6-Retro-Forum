@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.13/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font-family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        .Roboto {
+            font-family: "Roboto", sans-serif;
+        }
+    </style>
+
+    <title>API Card</title>
+</head>
+
+<body class="container mx-auto Roboto">
+
+    <nav class="mt-8">
+        <div class="flex items-center justify-between p-4 bg-white shadow-md">
+            <div>
+                <img src="images/logo.png" alt="" srcset="">
+            </div>
+
+            <div class="flex justify-center gap-x-6">
+                <div data-tip="Home"
+                    class="tooltip rounded-full hover:bg-gray-400 w-10 flex justify-center items-center">
+                    <img class="w-8" src="images/icons8-home-20.png" alt="" srcset="">
+                </div>
+
+                <div data-tip="Tooltip"
+                    class="tooltip rounded-full hover:bg-gray-400 w-10 flex justify-center items-center">
+                    <img class="w-6" src="images/icons8-pencil-20.png" alt="" srcset="">
+                </div>
+
+                <div data-tip="Contact"
+                    class="tooltip rounded-full hover:bg-gray-400 w-10 flex justify-center items-center">
+                    <img class="w-8" src="images/icons8-male-user-20.png" alt="" srcset="">
+                </div>
+
+                <div data-tip="Blog"
+                    class="tooltip rounded-full hover:bg-gray-400 w-10 flex justify-center items-center">
+                    <img class="w-6" src="images/icons8-flag-20.png" alt="" srcset="">
+                </div>
+
+                <div>
+                    <button
+                        class="bg-indigo-500 text-white px-8 py-4 rounded-full shadow-md hover:bg-indigo-600 transition">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- banner -->
+    <section class="my-1 rounded-lg py-10">
+        <div class="flex justify-center items-center rounded-lg bg-gray-950 bg-opacity-80 relative bg-cover py-24 bg-center"
+            style="background-image: url('./images/bgbanner.png');">
+
+            <!-- Banner Content -->
+            <div class="flex justify-center space-x-28 my-32">
+                <div class="space-y-4">
+                    <div class="space-y-4">
+                        <h2 class="text-4xl font-bold text-white">Welcome to the <br> <span
+                                class="text-cyan-700">ReTro</span> Forum</h2>
+                        <p class="text-gray-300 font-thin">Shore your Favarite opinion and win and wp forum coffee mug!
+                        </p>
+                    </div>
+                    <div>
+                        <label class="input input-bordered flex items-center gap-2">
+                            <input type="text" class="grow" placeholder="Search" />
+                            <button class="btn btn-sm bg-indigo-500 text-white">Search</button>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="flex justify-center items-center px-8 space-x-4 bg-white rounded-2xl">
+                    <div>
+                        <p>Registered user </p>
+                        <p>Forum </p>
+                        <p>Topic </p>
+                        <p>Replies </p>
+                    </div>
+
+                    <div>
+                        <ul class="list-none">
+                            <li> 01</li>
+                            <li> 05</li>
+                            <li> 01</li>
+                            <li> 01</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>
