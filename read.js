@@ -1,32 +1,59 @@
-const loadCards = async () => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`);
+const loadCards = async (categoryName) => {
+    let res;
+    if (!categoryName) {
+        res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts`);
+    }
+    else {
+        res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${categoryName}`);
+    }
+
     const data = await res.json();
     const allPosts = data.posts;
 
-    console.log(allPosts);
     displayCardDetails(allPosts);
+
 }
-loadCards();
+loadCards(false);
+
+const searchingFild = () => {
+    const cgNameId = document.getElementById('searchitems');
+    const takeinput = cgNameId.value;
+    cgNameId.value = '';
+    loadCards(takeinput);
+
+}
+
 const displayCardDetails = allPosts => {
 
-    const cardcontainer = document.getElementById('allcardshow');
+    if (allPosts.length == 0) {
+        loadCards(false);
+    }
 
+    const cardcontainer = document.getElementById('allcardshow');
+    cardcontainer.textContent = '';
+    let activeor;
     allPosts.forEach(element => {
         console.log(element);
+
+        if (element.isActive == true) {
+            activeor = 'online';
+        }
+        else {
+            activeor = 'offline';
+        }
+
         const eachCard = document.createElement('div')
-        eachCard.classList = `flex justify-start space-x-10 mb-8`;
+        eachCard.classList = `flex justify-start space-x-10 bg-gray-300 p-8 rounded-2xl mb-2`;
         eachCard.innerHTML = `
-        <div class="mb-4 w-3/5">
-                <div class="flex justify-start space-x-10 bg-gray-300 p-8 rounded-2xl">
                     <div>
-                        <div class="avatar online">
+                        <div class="avatar ${activeor}">
                             <div class="w-24 rounded-xl">
                                 <img src="${element.image}" />
                             </div>
                         </div>
                     </div>
 
-                    <div>
+                    <div class="w-full">
                         <div>
                             <div class="flex justify-start space-x-4 mb-4">
                                 <p># ${element.category}</p>
@@ -55,40 +82,52 @@ const displayCardDetails = allPosts => {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div onclick="selectItems(${element.id})" class="btn btn-circle btn-outline">
                                         <img class="w-8" src="images/icons8-email-24.png" alt="">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                
 
-            </div>
-
-            <div class="bg-gray-300 p-8 rounded-2xl w-2/5">
-                <div class="flex justify-between items-center">
-                    <h3 class="text-2xl font-bold">Title</h3>
-                    <h4>Mark as read (4)</h4>
-                </div>
-
-                <div class="flex justify-between bg-white p-7 rounded-lg mt-5 mb-2">
-                    <div>
-                        <h3 class="font-semibold text-lg">10 Kids Unaware of Their Halloween Costume</h3>
-                    </div>
-                    <div>
-                        <div class="flex justify-start items-center space-x-2">
-                            <img class="w-6" src="images/icons8-view-16.png" alt="">
-                            <p>250</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         `;
         cardcontainer.appendChild(eachCard);
     });
+
+
 }
 
-const searchingFild = () => {
+const selectItems = async (cardId) => {
 
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/post/${cardId}`)
+    const data = await res.json();
+    const eachCard = data;
+    console.log(eachCard);
+    selectCardAppend(eachCard);
+}
+
+let num = 0;
+
+const selectCardAppend = (eachCard) => {
+    num += 1; // Increment num by 1
+    const count = document.getElementById('numberOfRead');
+    count.innerText = `${num}`;
+
+    const var1 = document.getElementById('selectCardItems');
+
+    const var2 = document.createElement('div');
+    var2.classList = `flex justify-between bg-white p-7 rounded-lg mt-5 mb-2`;
+    var2.innerHTML = `
+                        <div>
+                            <h3 class="font-semibold text-lg">${eachCard.title}</h3>
+                        </div>
+                        <div>
+                            <div class="flex justify-start items-center space-x-2">
+                                <img class="w-6" src="images/icons8-view-16.png" alt="">
+                                            <p>${eachCard.view_count}</p>
+                            </div>
+                        </div>
+`;
+    var1.appendChild(var2);
 }

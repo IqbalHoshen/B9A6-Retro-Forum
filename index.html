@@ -77,8 +77,9 @@
                     </div>
                     <div>
                         <label class="input input-bordered flex items-center gap-2">
-                            <input type="text" class="grow" placeholder="Search" />
-                            <button class="btn btn-sm bg-indigo-500 text-white">Search</button>
+                            <input id="searchitems" type="text" class="grow" placeholder="Search" />
+                            <button onclick="searchingFild()"
+                                class="btn btn-sm bg-indigo-500 text-white">Search</button>
                         </label>
                     </div>
 
@@ -117,7 +118,38 @@
 
     <!-- card section -->
 
-    <section id="allcardshow">
+    <section>
+        <div class="flex justify-start space-x-10 mb-8">
+
+            <div id="allcardshow" class="mb-4 w-3/5"></div>
+
+            <div class="w-2/5">
+                <div class="bg-gray-300 p-8 rounded-2xl">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-bold">Title</h3>
+                        <h4>Mark as read (<span id="numberOfRead">0</span>)</h4>
+                    </div>
+
+                    <div id="selectCardItems">
+
+                    </div>
+
+                    <!-- <div class="flex justify-between bg-white p-7 rounded-lg mt-5 mb-2">
+                        <div>
+                            <h3 class="font-semibold text-lg">10 Kids Unaware of Their Halloween Costume</h3>
+                        </div>
+                        <div>
+                            <div class="flex justify-start items-center space-x-2">
+                                <img class="w-6" src="images/icons8-view-16.png" alt="">
+                                <p>250</p>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+
+
+            </div>
+        </div>
 
     </section>
 
