@@ -9,7 +9,7 @@ const loadCards = async (categoryName) => {
 
     const data = await res.json();
     const allPosts = data.posts;
-
+    console.log(allPosts);
     displayCardDetails(allPosts);
 
 }
@@ -33,7 +33,6 @@ const displayCardDetails = allPosts => {
     cardcontainer.textContent = '';
     let activeor;
     allPosts.forEach(element => {
-        console.log(element);
 
         if (element.isActive == true) {
             activeor = 'online';
@@ -130,4 +129,58 @@ const selectCardAppend = (eachCard) => {
                         </div>
 `;
     var1.appendChild(var2);
+}
+
+const LatestPosts = async () => {
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/latest-posts`);
+
+    const data = await res.json();
+    const latesCard = data;
+    LatestPostsApp(latesCard);
+}
+LatestPosts();
+const LatestPostsApp = latesCard => {
+    const latest1 = document.getElementById('LatestCardId');
+
+    latesCard.forEach(eachLatestcard => {
+        const latest3 = document.createElement('div');
+        // latest3.classList = `h-full`;
+        latest3.innerHTML = `
+    <div class="card bg-base-100 w-96 shadow-xl border-2 border-gray-300 border-solid h-full">
+                    <figure class="px-10 pt-10">
+                        <img src="${eachLatestcard.cover_image}"
+                            alt="image" class="rounded-xl" />
+                    </figure>
+
+                    <div class="card-body">
+                        <!--schedule -->
+                        <div class="flex justify-start gap-3 items-center">
+                            <img class="w-6 h-6" src="images/icons8-schedule-16.png" alt="no" srcset="">
+                            <p class="text-base">${eachLatestcard?.author?.posted_date || 'No publish date'}</p>
+                        </div>
+                        <p class="text-xl font-bold">${eachLatestcard.title}</p>
+                        <p class="text-lg">${eachLatestcard.description}</p>
+
+                        <div class="flex justify-start items-center gap-4">
+                            <div class="avatar">
+                                <div class="w-10 h-10 rounded-full">
+                                    <img
+                                        src="${eachLatestcard.profile_image}" />
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-base font-bold">${eachLatestcard?.author?.name || 'No author name'}</p>
+                                <p class="text-sm">${eachLatestcard?.author?.designation || 'Unknown'}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+    `;
+        latest1.appendChild(latest3);
+
+    })
+
+
 }
